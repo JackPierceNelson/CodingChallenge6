@@ -14,3 +14,22 @@ function displayEmployeeShifts(employee) {
     employee.shifts.forEach(shift => {console.log(`${shift.day}:${shift.hours} hours`);});
 }
 employees.forEach(displayEmployeeShifts);
+
+// Task 3: Create a Function to Assign a New Shift
+
+function assignShift(employeeName, day, hours) {
+    const employee = employees.find(emp => emp.name === employeeName);
+    if (!employee) {
+        console.log(`Error: Employee Name: ${employeeName} not found`);
+        return;
+    }
+    const existingShift = employee.shifts.find(shift => shift.day === day);
+    if (existingShift) {
+        console.log(`Error: ${employeeName} already has a shift on ${day}`);
+        return;
+    }
+    employee.shifts.push({day, hours});
+    console.log(`Shift on ${day} for ${hours} assigned to ${employeeName}`);
+}
+assignShift("Jack", "Monday", 8);
+assignShift("Emily", "Monday", 8);
